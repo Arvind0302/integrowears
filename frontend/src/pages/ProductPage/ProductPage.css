@@ -1,0 +1,40 @@
+.row-2 {
+  justify-content: space-between;
+  margin: 160px auto 50px;
+}
+
+select {
+  border: 1px solid var(--clr-yellow);
+  padding: 5px;
+  background: transparent;
+  color: var(--clr-blue);
+}
+
+select:focus {
+  outline: none;
+}
+
+.page-btn {
+  margin: 0 auto 80px;
+}
+
+.row-2 h2 {
+  color: var(--clr-blue);
+  font-size: 1.8rem;
+}
+
+.page-btn span {
+  display: inline-block;
+  border: 1px solid var(--clr-blue);
+  margin-left: 10px;
+  width: 40px;
+  height: 40px;
+  text-align: center;
+  cursor: pointer;
+  line-height: 40px;
+  transition: 0.3s all ease;
+}
+
+.page-btn span:hover {
+  background: #ffd741;
+}

@@ -1,0 +1,11 @@
+.checkout-items p {
+  margin: 10px;
+}
+
+.checkout-items .rating {
+  margin-left: 10px;
+}
+
+.checkout-items .btn {
+  margin-top: 0px;
+}

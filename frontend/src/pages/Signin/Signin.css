@@ -1,0 +1,140 @@
+.signin-page .footer-section {
+  position: relative;
+  top: 5rem;
+}
+
+.account-page {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: 5rem;
+  width: 100%;
+  height: 94vh;
+}
+
+.form-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background: var(--clr-light-yellow);
+  width: 400px;
+  height: auto;
+  padding: 40px 0;
+  margin: 0 20px;
+  box-shadow: var(--dark-shadow);
+}
+
+.form-container .account-btns {
+  font-weight: bold;
+  margin: 0 15px;
+  color: var(--clr-dark-grey);
+  cursor: pointer;
+  width: 100px;
+  display: inline-block;
+  background: 0;
+  border: none;
+  font-size: 20px;
+}
+
+.form-btn {
+  display: inline-block;
+}
+
+.form-container form {
+  max-width: 300px;
+  padding: 20px 20px;
+  transition: var(--transition);
+}
+
+.reg-form input,
+.login-form input {
+  width: 100%;
+  height: 30px;
+  margin: 10px 0;
+  padding: 0 10px;
+  background: none;
+  border: 1px solid var(--clr-light-grey);
+  letter-spacing: 2px;
+}
+
+form .btn {
+  width: 100%;
+  border: none;
+  cursor: pointer;
+  margin: 10px 0;
+  outline: none;
+}
+
+.forgot-password {
+  font-size: 14px;
+  color: #8aabca;
+}
+.create-account {
+  margin: 10px 0;
+  cursor: pointer;
+  background: 0;
+  border: none;
+  font-size: 14px;
+  color: #8aabca;
+}
+form .btn:focus {
+  outline: none;
+}
+
+.login-form {
+  transition: var(--transition);
+  transform: translate(0px);
+}
+
+.login-form-show {
+  display: none;
+  transition: var(--transition);
+  transform: translate(300px);
+}
+
+.reg-form {
+  display: none;
+  transition: var(--transition);
+  transform: translate(300px);
+}
+
+.reg-form-show {
+  display: block;
+  transition: var(--transition);
+  transform: translate(0px);
+}
+
+form a {
+  font-size: 12px;
+}
+
+.indicator {
+  width: 80px;
+  text-align: center;
+  border: none;
+  background: #ffd741;
+  height: 3px;
+  margin-top: 8px;
+  transform: translate(25px);
+  transition: var(--transition);
+}
+
+.show-indicator {
+  transform: translate(155px);
+}
+
+@media only screen and (min-width: 800px) {
+  .form-container .account-btns {
+    font-size: 24px;
+  }
+  .form-container {
+    margin: auto;
+  }
+  .reg-form input,
+  .login-form input {
+    height: 40px;
+    font-size: 16px;
+  }
+}
