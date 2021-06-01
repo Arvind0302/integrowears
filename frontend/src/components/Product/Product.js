@@ -10,14 +10,14 @@ const Product = (props) => {
     <div className='col-3 product-item'>
       <figure key={product._id}>
         <Link to={`/product/${product._id}`}>
-          <img src={product.image} alt={product.title} className='img-fluid' />
+          <img src={product.image} alt={product.name} className='img-fluid' />
         </Link>
       </figure>
 
       <h3>
-        <Link to='/product'>{product.title}</Link>
+        <Link to='/product'>{product.name}</Link>
       </h3>
-      <Rating reviews={product.reviews} rating={product.rating} />
+      <Rating reviews={product.numReviews} rating={product.rating} />
       <span className='price'>Ksh {product.price}</span>
       <p className='description'>{product.description}</p>
       <div className='buttons__container'>

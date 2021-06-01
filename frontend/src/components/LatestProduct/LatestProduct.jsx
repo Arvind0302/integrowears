@@ -1,38 +1,35 @@
-import React, { useEffect, useState } from 'react';
-import Product from '../Product/Product';
-import './LatestProduct.css';
-import axios from 'axios';
+import React, { useEffect, useState } from 'react'
+import Product from '../Product/Product'
+import './LatestProduct.css'
+import { useDispatch, useSelector } from 'react-redux'
+import { listProducts } from '../../actions/productActions'
+import Loading from '../Loading/Loading'
+import ErrorMessage from '../ErrorMessage/ErrorMessage'
 
 const LatestProduct = () => {
-  const [products, setProducts] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(false);
+  const dispatch = useDispatch()
+  const productList = useSelector((state) => state.productList)
+  const { loading, error, products } = productList
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        setLoading(true);
-        const { data } = await axios.get('/api/products/seed');
-        setLoading(false);
-        setProducts(data);
-      } catch (err) {
-        setError(err.message);
-        setLoading(false);
-      }
-    };
-    fetchData();
-  }, []);
+    dispatch(listProducts())
+  }, [dispatch])
   return (
     <div className='small-container'>
       <h2 className='title'>Latest Products</h2>
-      <div className='row'>
-        {products.map((product) => {
-          const { _id, price, image, title, rating, description } = product;
-          return <Product key={_id} product={product} />;
-        })}
-      </div>
+      {loading ? (
+        <Loading />
+      ) : error ? (
+        <ErrorMessage>{error}</ErrorMessage>
+      ) : (
+        <div className='row'>
+          {products.map((product) => {
+            return <Product key={product._id} product={product} />
+          })}
+        </div>
+      )}
     </div>
-  );
-};
+  )
+}
 
-export default LatestProduct;
+export default LatestProduct

@@ -4,7 +4,7 @@ const data = {
   users: [
     {
       name: 'Kevin',
-      email: 'kevinochiengp932@gmail.com',
+      email: 'kevin@gmail.com',
       password: bcrypt.hashSync('1234', 8),
       isAdmin: true,
     },
@@ -15,6 +15,7 @@ const data = {
       isAdmin: false,
     },
   ],
+
   products: [
     {
       image: '/images/jeans3.png',
@@ -76,8 +77,7 @@ const data = {
     {
       image: '/images/bag.jpg',
       name: 'Hip Hop Jeans Trouser',
-      description:
-        'Generic Men Pants Hip Hop Jeans Trousers Multi-pocket Sweat',
+      description: 'Generic Men Pants Hip Hop Jeans Trousers Multi-pocket',
       rating: 4,
       price: 2500,
       numReviews: 10,
