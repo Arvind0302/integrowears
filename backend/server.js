@@ -1,10 +1,10 @@
 import express from 'express'
-import data from './data'
 import cors from 'cors'
 import config from './config'
 import dotenv from 'dotenv'
 import userRouter from './routers/userRouter'
 import mongoose from 'mongoose'
+import productRouter from './routers/productRouter.js'
 
 const app = express()
 app.use(cors())
@@ -31,21 +31,15 @@ mongoose.connection
 let PORT = process.env.PORT
 
 app.use('/api/users', userRouter)
+app.use('/api/products', productRouter)
 app.use('/api/editproduct', userRouter)
 
 app.get('/', (reg, res) => {
   res.send('Integro Wears')
 })
 
-app.get('/api/products/:id', (req, res) => {
-  const id = req.params.id
-  const product = data.products.find((x) => x.id === id)
-  if (product) res.send(product)
-  else res.status(404).send({ msg: 'Product Not Found..' })
-})
-
-app.get('/api/products', (req, res) => {
-  res.json(data.products)
+app.use((err, req, res, next) => {
+  res.status(500).send({ message: err.message })
 })
 
 if (PORT == null || PORT == '') {

@@ -1,4 +1,4 @@
-import bcrypt from 'bcryptjs';
+import bcrypt from 'bcryptjs'
 
 const data = {
   users: [
@@ -24,6 +24,8 @@ const data = {
       price: 2500,
       numReviews: 10,
       stock: 19,
+      category: 'Hood',
+      brand: 'Nike',
     },
     {
       image: '/images/mixture2.png',
@@ -33,6 +35,8 @@ const data = {
       price: 650,
       numReviews: 10,
       stock: 2,
+      category: 'Hood',
+      brand: 'Nike',
     },
     {
       image: '/images/bag.jpg',
@@ -42,6 +46,8 @@ const data = {
       price: 1999,
       numReviews: 10,
       stock: 5,
+      category: 'Hood',
+      brand: 'Nike',
     },
     {
       image: '/images/bag.jpg',
@@ -53,6 +59,8 @@ const data = {
       price: 1000,
       numReviews: 10,
       stock: 10,
+      category: 'Hood',
+      brand: 'Nike',
     },
     {
       image: '/images/bag.jpg',
@@ -62,6 +70,8 @@ const data = {
       price: 2500,
       numReviews: 10,
       stock: 20,
+      category: 'Hood',
+      brand: 'Nike',
     },
     {
       image: '/images/bag.jpg',
@@ -72,6 +82,8 @@ const data = {
       price: 2500,
       numReviews: 10,
       stock: 6,
+      category: 'Hood',
+      brand: 'Nike',
     },
     {
       image: '/images/bag.jpg',
@@ -81,6 +93,8 @@ const data = {
       price: 600,
       numReviews: 10,
       stock: 10,
+      category: 'Hood',
+      brand: 'Nike',
     },
 
     {
@@ -91,6 +105,8 @@ const data = {
       price: 2500,
       numReviews: 10,
       stock: 10,
+      category: 'Hood',
+      brand: 'Nike',
     },
 
     {
@@ -102,6 +118,8 @@ const data = {
       price: 500,
       numReviews: 10,
       stock: 10,
+      category: 'Hood',
+      brand: 'Nike',
     },
     {
       image: '/images/shoe.jpg',
@@ -111,6 +129,8 @@ const data = {
       price: 500,
       numReviews: 10,
       stock: 10,
+      category: 'Hood',
+      brand: 'Nike',
     },
     {
       image: '/images/airforce1.png',
@@ -121,6 +141,8 @@ const data = {
       price: 500,
       numReviews: 10,
       stock: 10,
+      category: 'Hood',
+      brand: 'Nike',
     },
     {
       image: '/images/airforce2.png',
@@ -130,6 +152,8 @@ const data = {
       price: 500,
       numReviews: 10,
       stock: 10,
+      category: 'Hood',
+      brand: 'Nike',
     },
     {
       image: '/images/airforce3.jpg',
@@ -140,6 +164,8 @@ const data = {
       price: 500,
       numReviews: 10,
       stock: 10,
+      category: 'Hood',
+      brand: 'Nike',
     },
     {
       image: '/images/bomba.png',
@@ -149,6 +175,8 @@ const data = {
       price: 500,
       numReviews: 10,
       stock: 10,
+      category: 'Hood',
+      brand: 'Nike',
     },
     {
       image: '/images/bomba.png',
@@ -158,8 +186,10 @@ const data = {
       price: 500,
       numReviews: 10,
       stock: 10,
+      category: 'Hood',
+      brand: 'Nike',
     },
   ],
-};
+}
 
-export default data;
+export default data

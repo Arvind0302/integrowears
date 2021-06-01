@@ -1,10 +1,10 @@
-import React from 'react';
-import './Product.css';
-import { Link } from 'react-router-dom';
-import Rating from '../Rating/Rating';
+import React from 'react'
+import './Product.css'
+import { Link } from 'react-router-dom'
+import Rating from '../Rating/Rating'
 
 const Product = (props) => {
-  const { product } = props;
+  const { product } = props
 
   return (
     <div className='col-3 product-item'>
@@ -27,7 +27,7 @@ const Product = (props) => {
         </button>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Product;
+export default Product

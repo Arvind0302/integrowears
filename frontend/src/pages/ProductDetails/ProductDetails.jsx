@@ -1,35 +1,35 @@
-import React, { useEffect, useState } from 'react';
-import product20 from '../../images/Tshirts.png';
-import product21 from '../../images/shoe.jpg';
-import { useHistory, useParams } from 'react-router-dom';
-import './ProductDetails.css';
-import { useDispatch, useSelector } from 'react-redux';
-import { detailsProduct } from '../../actions/productActions';
-import Rating from '../../components/Rating/Rating';
-import Loading from '../../components/Loading/Loading';
-import ErrorMessage from '../../components/ErrorMessage/ErrorMessage';
+import React, { useEffect, useState } from 'react'
+import product20 from '../../images/Tshirts.png'
+import product21 from '../../images/shoe.jpg'
+import { useHistory, useParams } from 'react-router-dom'
+import './ProductDetails.css'
+import { useDispatch, useSelector } from 'react-redux'
+import { detailsProduct } from '../../actions/productActions'
+import Rating from '../../components/Rating/Rating'
+import Loading from '../../components/Loading/Loading'
+import ErrorMessage from '../../components/ErrorMessage/ErrorMessage'
 
-const ProductDetails = (props) => {
-  const productDetails = useSelector((state) => state.productDetails);
-  const { product, loading, error } = productDetails;
+const ProductDetails = () => {
+  const productDetails = useSelector((state) => state.productDetails)
+  const { product, loading, error } = productDetails
 
-  const productList = useSelector((state) => state.productList);
-  const { products } = productList;
-  const dispatch = useDispatch();
-  const { id } = useParams();
-  const history = useHistory();
-  const [quantity, setQuantity] = useState(1);
+  const productList = useSelector((state) => state.productList)
+  const { products } = productList
+  const dispatch = useDispatch()
+  const { productId } = useParams()
+  const history = useHistory()
+  const [quantity, setQuantity] = useState(1)
 
   useEffect(() => {
-    dispatch(detailsProduct(id));
+    dispatch(detailsProduct(productId))
     return () => {
       //cleanup;
-    };
-  }, [dispatch, id]);
+    }
+  }, [dispatch, productId])
 
   const addToCartHandler = () => {
-    history.push(`/cart/${id}?qty=${quantity}`);
-  };
+    history.push(`/cart/${productId}?qty=${quantity}`)
+  }
 
   return loading ? (
     <Loading>Loading...</Loading>
@@ -72,7 +72,7 @@ const ProductDetails = (props) => {
                 type='number'
                 value={quantity}
                 onChange={(e) => {
-                  setQuantity(e.target.value);
+                  setQuantity(e.target.value)
                 }}
               >
                 {[...Array(product.stock).keys()].map((x) => (
@@ -98,7 +98,7 @@ const ProductDetails = (props) => {
         </div>
       </div>
     </>
-  );
-};
+  )
+}
 
-export default ProductDetails;
+export default ProductDetails
