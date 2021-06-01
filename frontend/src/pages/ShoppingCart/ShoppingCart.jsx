@@ -1,12 +1,11 @@
 import React, { useEffect } from 'react';
-import Footer from '../../components/Footer/Footer';
 import './ShoppingCart.css';
 import EmptyCart from '../../components/EmptyCart/EmptyCart';
 import { useHistory, useLocation, useParams } from 'react-router';
 import { addToCart, removeFromCart } from '../../actions/cartActions';
 import { useDispatch, useSelector } from 'react-redux';
-import { FaStar, FaStarHalfAlt } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
+import Rating from '../../components/Rating/Rating';
 
 const ShoppingCart = () => {
   const cart = useSelector((state) => state.cart);
@@ -25,7 +24,7 @@ const ShoppingCart = () => {
     if (id) {
       dispatch(addToCart(id, quantity));
     }
-  }, []);
+  }, [dispatch, id, quantity]);
 
   const checkOutHandler = () => {
     history.push('/signin?redirect=shipping');
@@ -56,16 +55,7 @@ const ShoppingCart = () => {
                       </Link>
 
                       <p>Price: Ksh {item.price}</p>
-                      <div className='rating'>
-                        {Array(4)
-                          .fill()
-                          .map((_, i) => (
-                            <i>{<FaStar />}</i>
-                          ))}
-                        <i>
-                          <FaStarHalfAlt />
-                        </i>
-                      </div>
+                      <Rating />
                       <button
                         className='btn'
                         onClick={() => removeFromCartHandler(item.product)}
@@ -80,15 +70,14 @@ const ShoppingCart = () => {
                     className='quantity'
                     value={item.quantity}
                     onChange={(e) =>
-                      dispatch(
-                        addToCart(id, quantity)(item.product, e.target.value)
-                      )
+                      dispatch(addToCart(item.product, Number(e.target.value)))
                     }
                   >
-                    <option value=''>1</option>
-                    <option value=''>2</option>
-                    <option value=''>1</option>
-                    <option value=''>1</option>
+                    {[...Array(item.stock).keys()].map((x) => (
+                      <option key={x + 1} value={x + 1}>
+                        {x + 1}
+                      </option>
+                    ))}
                   </select>
                 </td>
                 <td>Ksh {item.price}</td>
@@ -118,7 +107,6 @@ const ShoppingCart = () => {
           </button>
         </div>
       </div>
-      <Footer />
     </>
   );
 };

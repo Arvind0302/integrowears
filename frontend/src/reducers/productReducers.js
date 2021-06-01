@@ -10,7 +10,10 @@ import {
   PRODUCT_SAVE_SUCCESS,
 } from '../constants/productConstant';
 
-const productListReducer = (state = { products: [] }, action) => {
+const productListReducer = (
+  state = { loading: true, products: [] },
+  action
+) => {
   switch (action.type) {
     case PRODUCT_LIST_REQUEST:
       return { loading: true };
@@ -23,7 +26,10 @@ const productListReducer = (state = { products: [] }, action) => {
   }
 };
 
-const productDetailsReducer = (state = { product: {} }, action) => {
+const productDetailsReducer = (
+  state = { product: {}, loading: true },
+  action
+) => {
   switch (action.type) {
     case PRODUCT_DETAILS_REQUEST:
       return { loading: true };

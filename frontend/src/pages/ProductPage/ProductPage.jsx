@@ -1,9 +1,20 @@
-import React from 'react';
-import Footer from '../../components/Footer/Footer';
+import React, { useEffect, useState } from 'react';
 import './ProductPage.css';
-import Products from '../../components/Product/Products';
+import Product from '../../components/Product/Product';
+import { listProducts } from '../../actions/productActions';
+import { useDispatch, useSelector, useStore } from 'react-redux';
+import Loading from '../../components/Loading/Loading';
+import ErrorMessage from '../../components/ErrorMessage/ErrorMessage';
 
 const ProductPage = () => {
+  const dispatch = useDispatch();
+  const productList = useSelector((state) => state.productList);
+  const { loading, error, products } = productList;
+
+  useEffect(() => {
+    dispatch(listProducts());
+  }, [dispatch]);
+
   return (
     <>
       <section className='row row-2'>
@@ -16,10 +27,21 @@ const ProductPage = () => {
           <option>Sort by sales</option>
         </select>
       </section>
+
       <section className='small-container'>
-        <div className='row'>
-          <Products />
-        </div>
+        {loading ? (
+          <Loading />
+        ) : error ? (
+          <ErrorMessage>{error}</ErrorMessage>
+        ) : (
+          <div className='row'>
+            {products.map((product) => {
+              const { _id, price, image, title, rating, description } = product;
+              return <Product key={_id} product={product} />;
+            })}
+          </div>
+        )}
+
         <div className='page-btn'>
           <span>1</span>
           <span>2</span>
@@ -28,7 +50,6 @@ const ProductPage = () => {
           <span>&#8594;</span>
         </div>
       </section>
-      <Footer />
     </>
   );
 };

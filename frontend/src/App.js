@@ -3,7 +3,6 @@ import ProductPage from './pages/ProductPage/ProductPage';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import HomePage from './pages/HomePage/HomePage';
 import ShoppingCart from './pages/ShoppingCart/ShoppingCart';
-import Product from './components/ProductDetails/Product';
 import ErrorPage from './pages/ErrorPage/ErrorPage';
 import Navbar from './components/Navbar/Navbar';
 import Sidebar from './components/Sidebar/Sidebar';
@@ -12,6 +11,13 @@ import ContactPage from './pages/ContactPage/ContactPage';
 import Signin from './pages/Signin/Signin';
 import ProductEditPage from './pages/ProductEditPage/ProductEditPage';
 import Footer from './components/Footer/Footer';
+import ProductDetails from './pages/ProductDetails/ProductDetails';
+import ShippingAddress from './pages/ShippingAddress/ShippingAddress';
+import PlaceOderPage from './pages/PlaceOrderPage/PlaceOderPage';
+import OrderPage from './pages/OrderPage/OrderPage';
+import OrderHistoryPage from './pages/OrderHistoryPage/OrderHistoryPage';
+import ProfilePage from './pages/ProfilePage/ProfilePage';
+import PrivateRoute from './components/PrivateRoute/PrivateRoute';
 
 const App = () => {
   return (
@@ -41,7 +47,25 @@ const App = () => {
           <Payment />
         </Route>
         <Route path='/product/:id'>
-          <Product />
+          <ProductDetails />
+        </Route>
+        <Route path='/shipping'>
+          <ShippingAddress />
+        </Route>
+        <Route path='/payment'>
+          <Payment />
+        </Route>
+        <PrivateRoute path='/profile'>
+          <ProfilePage />
+        </PrivateRoute>
+        <Route path='/placeorder'>
+          <PlaceOderPage />
+        </Route>
+        <Route path='/order/:id'>
+          <OrderPage />
+        </Route>
+        <Route path='/orderhitory'>
+          <OrderHistoryPage />
         </Route>
         <Route path='*'>
           <ErrorPage />

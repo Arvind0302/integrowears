@@ -31,7 +31,7 @@ export const links = [
   },
   {
     id: 4,
-    url: '/payment',
+    url: '/signin',
     text: 'Login',
     icon: <FaRegUser />,
   },

@@ -1,4 +1,4 @@
-import axios from 'axios';
+import Axios from 'axios';
 import {
   PRODUCT_LIST_FAIL,
   PRODUCT_LIST_SUCCESS,
@@ -14,7 +14,7 @@ import {
 const listProducts = () => async (dispatch) => {
   try {
     dispatch({ type: PRODUCT_LIST_REQUEST });
-    const { data } = await axios.get('/api/products');
+    const { data } = await Axios.get('/api/products');
     dispatch({ type: PRODUCT_LIST_SUCCESS, payload: data });
   } catch (error) {
     dispatch({ type: PRODUCT_LIST_FAIL, payload: error.message });
@@ -27,7 +27,7 @@ const saveProduct = (product) => async (dispatch, getState) => {
     const {
       userSignin: { userInfo },
     } = getState();
-    const { data } = await axios.post('/api/products', product, {
+    const { data } = await Axios.post('/api/products', product, {
       headers: {
         Authorization: 'Bearer' + userInfo.token,
       },
@@ -41,10 +41,16 @@ const saveProduct = (product) => async (dispatch, getState) => {
 const detailsProduct = (productId) => async (dispatch) => {
   try {
     dispatch({ type: PRODUCT_DETAILS_REQUEST, payload: productId });
-    const { data } = await axios.get('/api/products/' + productId);
+    const { data } = await Axios.get('/api/products/' + productId);
     dispatch({ type: PRODUCT_DETAILS_SUCCESS, payload: data });
   } catch (error) {
-    dispatch({ type: PRODUCT_DETAILS_FAIL, payload: error.message });
+    dispatch({
+      type: PRODUCT_DETAILS_FAIL,
+      payload:
+        error.responce && error.responce.data.message
+          ? error.responce.data.message
+          : error.message,
+    });
   }
 };
 

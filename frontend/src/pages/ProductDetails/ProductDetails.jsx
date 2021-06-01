@@ -1,20 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import { FaStar, FaStarHalfAlt } from 'react-icons/fa';
-import product18 from '../../images/Tshirt1.png';
-import product19 from '../../images/sweatpant2.png';
 import product20 from '../../images/Tshirts.png';
 import product21 from '../../images/shoe.jpg';
-import product22 from '../../images/airforce1.png';
-import product23 from '../../images/airforce2.png';
 import { useHistory, useParams } from 'react-router-dom';
-import Footer from '../Footer/Footer';
 import './ProductDetails.css';
-import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { detailsProduct } from '../../actions/productActions';
-import Products from '../Product/Products';
+import Rating from '../../components/Rating/Rating';
+import Loading from '../../components/Loading/Loading';
+import ErrorMessage from '../../components/ErrorMessage/ErrorMessage';
 
-const Product = (props) => {
+const ProductDetails = (props) => {
   const productDetails = useSelector((state) => state.productDetails);
   const { product, loading, error } = productDetails;
 
@@ -30,16 +25,16 @@ const Product = (props) => {
     return () => {
       //cleanup;
     };
-  }, []);
+  }, [dispatch, id]);
 
-  const addToCart = () => {
-    history.push('/cart/' + id + '?qty=' + quantity);
+  const addToCartHandler = () => {
+    history.push(`/cart/${id}?qty=${quantity}`);
   };
 
   return loading ? (
-    <div>Loading...</div>
+    <Loading>Loading...</Loading>
   ) : error ? (
-    <div>{error}</div>
+    <ErrorMessage>{error}</ErrorMessage>
   ) : (
     <>
       <div className='small-container single__product'>
@@ -59,16 +54,9 @@ const Product = (props) => {
               </div>
             </div>
           </div>
-          <div className=' col-2'>
+          <div className='col-2'>
             <h1>{product.title} </h1>
-            <div className='rating'>
-              {Array(4)
-                .fill()
-                .map((_, i) => (
-                  <i>{<FaStar />}</i>
-                ))}
-              <i>{<FaStarHalfAlt />}</i>
-            </div>
+            <Rating rating={products.rating} reviews={products.reviews} />
             <h4>Ksh {product.price}</h4>
             <div className='fields-container'>
               <select>
@@ -95,7 +83,7 @@ const Product = (props) => {
               </select>
             </div>
             {product.stock > 0 ? (
-              <button to='cart' className='btn' onClick={addToCart}>
+              <button to='cart' className='btn' onClick={addToCartHandler}>
                 Add to cart
               </button>
             ) : (
@@ -109,10 +97,8 @@ const Product = (props) => {
           </div>
         </div>
       </div>
-
-      <Footer />
     </>
   );
 };
 
-export default Product;
+export default ProductDetails;

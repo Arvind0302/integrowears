@@ -1,6 +1,6 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import './ErrorPage.css';
+import React from 'react'
+import { Link } from 'react-router-dom'
+import './ErrorPage.css'
 
 const ErrorPage = () => {
   return (
@@ -13,7 +13,7 @@ const ErrorPage = () => {
         </Link>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default ErrorPage;
+export default ErrorPage

@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import './Signin.css';
-import { Link, useHistory } from 'react-router-dom';
-import Footer from '../../components/Footer/Footer';
+import { Link, useHistory, useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { signin } from '../../actions/userActions';
 import Register from '../../components/Register/Register';
+import Loading from '../../components/Loading/Loading';
+import ErrorMessage from '../../components/ErrorMessage/ErrorMessage';
 
 const Signin = () => {
   const [loginForm, setLoginForm] = useState(true);
@@ -14,12 +15,20 @@ const Signin = () => {
   const userSignin = useSelector((state) => state.userSignin);
   const { loading, userInfo, error } = userSignin;
   const dispatch = useDispatch();
+  const location = useLocation();
   const history = useHistory();
+  const redirect = location.search ? location.search.split('=')[1] : '/';
 
   const submitHandler = (e) => {
     e.preventDefault();
     dispatch(signin(email, password));
   };
+
+  useEffect(() => {
+    if (userInfo) {
+      history.push(redirect);
+    }
+  }, [history, redirect, userInfo]);
 
   const loginBtn = () => {
     setRegisterForm(false);
@@ -76,8 +85,8 @@ const Signin = () => {
               onChange={(e) => setPassword(e.target.value)}
             />
 
-            {loading && <div>Loading...</div>}
-            {error && <div>{error}</div>}
+            {loading && <Loading />}
+            {error && <ErrorMessage />}
             <button type='submit' className='btn '>
               Login
             </button>
@@ -87,14 +96,14 @@ const Signin = () => {
               </Link>
             </div>
             <button className='create-account' onClick={registerBtn}>
-              Dont have an account? Create One
+              <Link to={`/register?redirect=${redirect}`}>
+                Dont have an account? Create One
+              </Link>
             </button>
           </form>
           {loginForm ? null : <Register />}
         </div>
       </div>
-
-      <Footer />
     </section>
   );
 };

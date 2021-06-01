@@ -1,0 +1,11 @@
+.checkout-steps > div {
+  border-top: 0.3rem var(--clr-yellow) solid;
+  padding: 1rem;
+  color: var(--clr-yellow);
+  flex: 1;
+}
+
+.checkout-steps > div.active {
+  border-top: var(--clr-yellow);
+  color: var(--clr-yellow);
+}
